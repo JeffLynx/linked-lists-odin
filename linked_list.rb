@@ -4,24 +4,15 @@ class LinkedList
     @tail = nil
   end
 
-  # Helper function for list traversal
-  # def traverse
-  #  return nil if @head.nil?
-
-  #  current_node = @head
-  #  current_node.next_node
-  # end
-
   # Add new node containing value to the end of the list
   def append(value)
     new_node = Node.new(value)
     if @head.nil?
       @head = new_node
-      @tail = new_node
     else
       @tail.next_node = new_node
-      @tail = new_node
     end
+    @tail = new_node
   end
 
   # Add new node containing value to the start of the list
@@ -104,16 +95,27 @@ class LinkedList
   # Return the index of the node containing value, or nil
   # if not found
   def find(value)
+    return nil if @head.nil?
+
+    current_node = @head
+    current_index = 0
+
+    while current_node
+      return current_index if current_node.value == value
+
+      current_node = current_node.next_node
+      current_index += 1
+    end
   end
 
   # Represent LinkedList objects as strings
   # Format: ( value ) -> ( value ) -> ( value ) -> nil
   def my_to_s
-    current = @head
+    current_node = @head
     elements = []
-    while current
-      elements << "( #{current.value} )"
-      current = current.next_node
+    while current_node
+      elements << "( #{current_node.value} )"
+      current_node = current_node.next_node
     end
     elements << 'nil'
     elements.join(' -> ')
