@@ -30,14 +30,27 @@ class LinkedList
 
   # Return the total number of nodes in the list
   def size
+    size = 0
+    current_node = @head
+    while current_node
+      size += 1
+      current_node = current_node.next_node
+    end
+    size
   end
 
   # Return the first node in the list
   def head
+    return nil if @head.nil?
+
+    @head
   end
 
   # Return the last node in the list
   def tail
+    return nil if @tail.nil?
+
+    @tail
   end
 
   # Return the node at the given index

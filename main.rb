@@ -15,3 +15,6 @@ list.prepend('Hamster')
 list.prepend('Snake')
 list.prepend('Turtle')
 puts list.my_to_s
+
+puts "Head: #{list.head.value}, Tail: #{list.tail.value}"
+puts "\nList size: #{list.size}"
