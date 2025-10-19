@@ -1,10 +1,31 @@
 class LinkedList
+  def initialize
+    @head = nil
+    @tail = nil
+  end
+
   # Add new node containing value to the end of the list
   def append(value)
+    new_node = Node.new(value)
+    if @head.nil?
+      @head = new_node
+      @tail = new_node
+    else
+      @tail.next_node = new_node
+      @tail = new_node
+    end
   end
 
   # Add new node containing value to the start of the list
   def prepend(value)
+    new_node = Node.new(value)
+    if @head.nil?
+      @head = new_node
+      @tail = new_node
+    else
+      new_node.next_node = @head
+      @head = new_node
+    end
   end
 
   # Return the total number of nodes in the list
@@ -39,7 +60,15 @@ class LinkedList
 
   # Represent LinkedList objects as strings
   # Format: ( value ) -> ( value ) -> ( value ) -> nil
-  def to_s
+  def my_to_s
+    current = @head
+    elements = []
+    while current
+      elements << "( #{current.value} )"
+      current = current.next_node
+    end
+    elements << 'nil'
+    elements.join(' -> ')
   end
 
   # Extra credit:
@@ -55,8 +84,8 @@ end
 class Node
   attr_accessor :value, :next_node
 
-  def initialize
-    @value = nil
+  def initialize(value = nil)
+    @value = value
     @next_node = nil
   end
 end
