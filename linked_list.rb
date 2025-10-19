@@ -4,6 +4,14 @@ class LinkedList
     @tail = nil
   end
 
+  # Helper function for list traversal
+  # def traverse
+  #  return nil if @head.nil?
+
+  #  current_node = @head
+  #  current_node.next_node
+  # end
+
   # Add new node containing value to the end of the list
   def append(value)
     new_node = Node.new(value)
@@ -79,8 +87,18 @@ class LinkedList
   end
 
   # Return true if the passed in value is in the list,
-  # return flase if it is not
+  # return false if it is not
   def contains?(value)
+    return nil if @head.nil?
+
+    current_node = @head
+    while current_node
+      return true if current_node.value == value
+
+      current_node = current_node.next_node
+
+    end
+    false
   end
 
   # Return the index of the node containing value, or nil
