@@ -55,6 +55,8 @@ class LinkedList
 
   # Return the node at the given index
   def at(index)
+    return nil if @head.nil?
+
     current_node = @head
     current_index = 0
     while current_node
@@ -68,6 +70,12 @@ class LinkedList
 
   # Remove the last element from the list
   def pop
+    return nil if @head.nil?
+
+    current_node = @head
+    current_node = current_node.next_node until current_node.next_node == @tail
+    current_node.next_node = nil
+    @tail = current_node
   end
 
   # Return true if the passed in value is in the list,
